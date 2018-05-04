@@ -1,0 +1,9 @@
+<h3>Top Heroes | diferente</h3>
+<div class="grid grid-pad">
+  <a *ngFor="let hero of heroes" class="col-1-4" routerLink="/detail/{{hero.id}}">
+    <div class="module hero">
+      <h4>{{hero.nome}}</h4>
+    </div>
+  </a>
+</div>
+<app-procura-heroi></app-procura-heroi>

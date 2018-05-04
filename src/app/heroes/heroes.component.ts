@@ -1,0 +1,46 @@
+import { Component, OnInit } from '@angular/core';
+import { Hero } from '../hero';
+import { HeroService } from './../hero.service';
+
+@Component({
+  selector: 'app-heroes',
+  templateUrl: './heroes.component.html',
+  styleUrls: ['./heroes.component.css']
+})
+export class HeroesComponent implements OnInit {
+
+  heroes: Hero[];
+
+  // heroiSelecionado: Hero;
+
+  // onSelect(hero: Hero): void{
+  //   this.heroiSelecionado = hero;
+  // }
+
+  constructor(private heroService: HeroService) { }
+
+  getHeroes(): void{
+    this.heroService.getHerois().subscribe(heroes => this.heroes = heroes);
+  }
+
+  ngOnInit() {
+    this.getHeroes();
+  }
+
+adicionar(nome: string): void{
+    nome = nome.trim();
+    if (!nome){
+      return;
+    }
+    this.heroService.adicionarHeroi({ nome } as Hero).
+    subscribe(hero => {
+      this.heroes.push(hero);
+    });
+}
+
+deletar(hero: Hero): void{
+  this.heroes = this.heroes.filter(h => h !== hero);
+  this.heroService.deletarHeroi(hero).subscribe();
+}
+
+}

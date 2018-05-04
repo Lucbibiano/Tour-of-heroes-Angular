@@ -1,0 +1,13 @@
+<button class="b" (click)="voltar()">Voltar</button>
+<div *ngIf="hero">
+    <h2>{{hero.nome | uppercase}} Detalhes</h2>
+    <div>
+      <span>ID:</span>{{hero.id}}</div>
+    <br>
+    <div>
+      <label>Nome:
+        <input [(ngModel)]="hero.nome" placeholder="nome">
+      </label>
+    </div>
+  </div>
+  <button class="b" (click)="salvar()">Salvar</button>
